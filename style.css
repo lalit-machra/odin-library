@@ -13,6 +13,19 @@ ul li {
 }
 
 h1 {
-  color: red;
+  text-align: center;
 }
 
+table {
+  margin-top: 20px;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid;
+}
+
+table th,
+table td {
+  padding: 20px;
+  border: 1px solid;
+}
