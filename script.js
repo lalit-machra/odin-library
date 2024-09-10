@@ -44,3 +44,11 @@ for (let i = 0; i < myLibrary.length; i++) {
 
   tbody.appendChild(tr);
 }
+
+// Add new book using dialog box
+const addNewBook = document.querySelector(".addNewBook");
+const newBookDialog = document.querySelector(".newBookDialog");
+
+addNewBook.addEventListener("click", () => {
+  newBookDialog.showModal();
+});

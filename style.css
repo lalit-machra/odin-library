@@ -30,3 +30,24 @@ table td {
   border: 1px solid;
   text-align: center;
 }
+
+form {
+  padding: 20px;
+}
+
+form > * {
+  display: block;
+}
+
+form > label {
+  margin-top: 20px;
+}
+
+form > button {
+  margin-top: 20px;
+}
+
+dialog {
+  height: 370px;
+  width: 400px;
+}

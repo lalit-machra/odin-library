@@ -10,7 +10,8 @@
   </head>
   <body>
     <h1>Welcome to your library!</h1>
-    <button>new book</button>
+    <button class="addNewBook">Add New Book</button>
+
     <table>
       <thead>
         <tr>
@@ -24,5 +25,23 @@
         
       </tbody>
     </table>
+
+    <dialog class="newBookDialog">
+      <form>
+        <label for="author">Author</label>
+        <input id="author" type="text">
+
+        <label for="title">Title</label>
+        <input id="author" type="text">
+
+        <label for="numOfPages">Number of pages</label>
+        <input id="numOfPages" type="number">
+
+        <label for="readingStatus">Reading Status</label>
+        <input id="readingStatus" type="text">
+
+        <button formmethod="dialog">Submit</button>
+      </form>
+    </dialog>
   </body>
 </html>
