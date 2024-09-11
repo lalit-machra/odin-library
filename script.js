@@ -14,13 +14,13 @@ function addToLibrary(book) {
   myLibrary.push(book);
 }
 
-const book1 = new Book("author1", "title1", 234, "not read");
-const book2 = new Book("author2", "title2", 274, "not read");
+const book1 = new Book("author1", "title1", 234, "unread");
+const book2 = new Book("author2", "title2", 274, "read");
 addToLibrary(book1);
 addToLibrary(book2);
 
 const tbody = document.querySelector("tbody");
-let tr, td1, td2, td3, td4, td5, deleteBtn;
+let tr, td1, td2, td3, td4, td5, deleteBtn, readStatusBtn;
 
 
 function displayBooks() {
@@ -43,9 +43,30 @@ function displayBooks() {
     tr.appendChild(td3);
   
     td4 = document.createElement("td");
-    td4.innerText = myLibrary[i].readStatus;
-    td4.classList.add(`book${i + 1}`);
+    readStatusBtn = document.createElement("button");
+    // We have different styling for button depending upon whether book read or not
+    if (myLibrary[i].readStatus === "read") {
+      console.log("book read");
+      readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-read");
+    }
+    else if (myLibrary[i].readStatus === "unread") {
+      console.log("book not read");
+      readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-unread");
+    }
+    td4.appendChild(readStatusBtn);
     tr.appendChild(td4);
+
+    // Add an event listener to readSatusBtn to toggle between read and unread
+    readStatusBtn.addEventListener("click", (e) => {
+      if (e.target.classList[2] === "book-read") {
+        e.target.classList.remove("book-read");
+        e.target.classList.add("book-unread");
+      }
+      else {
+        e.target.classList.remove("book-unread");
+        e.target.classList.add("book-read");
+      }
+    })
 
     td5 = document.createElement("td");
     deleteBtn = document.createElement("button");
@@ -54,7 +75,7 @@ function displayBooks() {
     td5.appendChild(deleteBtn);
     tr.appendChild(td5);
 
-    // Add an event listener to delete button to handle deletes
+    // Add an event listener to deleteBtn to handle deletes
     deleteBtn.addEventListener("click", (e) => {
       // Remove the deleted object from array
       let bookClass = e.target.classList[0];

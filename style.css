@@ -41,6 +41,7 @@ form > * {
 
 form > label {
   margin-top: 20px;
+  margin-bottom: 2px;
 }
 
 form > button {
@@ -50,4 +51,27 @@ form > button {
 dialog {
   height: 370px;
   width: 400px;
+}
+
+.read-status-button {
+  width: 100px;
+  height: 30px;
+}
+
+.book-read::before {
+  content: "Read";
+}
+
+.book-read {
+  background-color: black;
+  color: white;
+}
+
+.book-unread::before {
+  content: "Unread";
+}
+
+.book-unread {
+  background-color: white;
+  color: black;
 }
