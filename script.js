@@ -101,9 +101,13 @@ function displayBooks() {
 // Add new book using dialog box
 const addNewBtn = document.querySelector(".addNewBtn");
 const newBookDialog = document.querySelector(".newBookDialog");
+const closeDialog = document.querySelector("dialog .close-dialog");
 
 addNewBtn.addEventListener("click", () => {
   newBookDialog.showModal();
+});
+closeDialog.addEventListener("click", () => {
+  newBookDialog.close();
 });
 
 const author = document.querySelector("#author");
