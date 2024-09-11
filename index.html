@@ -19,6 +19,7 @@
           <th>Title</th>
           <th>Number of pages</th>
           <th>Reading status</th>
+          <th>Remove Book</th>
         </tr>
       </thead>
       <tbody>
@@ -29,16 +30,16 @@
     <dialog class="newBookDialog">
       <form>
         <label for="author">Author</label>
-        <input id="author" type="text">
+        <input id="author" type="text" name="author">
 
         <label for="title">Title</label>
-        <input id="author" type="text">
+        <input id="title" type="text" name="title">
 
         <label for="numOfPages">Number of pages</label>
-        <input id="numOfPages" type="number">
+        <input id="numOfPages" type="number" name="numOfPages">
 
         <label for="readingStatus">Reading Status</label>
-        <input id="readingStatus" type="text">
+        <input id="readingStatus" type="text" name="readingStatus">
 
         <button formmethod="dialog">Submit</button>
       </form>
