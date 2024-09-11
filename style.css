@@ -16,6 +16,14 @@ h1 {
   text-align: center;
 }
 
+.addNewBtn {
+  height: 50px;
+  width: 200px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+}
+
 table {
   margin-top: 20px;
   table-layout: fixed;
@@ -53,9 +61,16 @@ dialog {
   width: 400px;
 }
 
+.deleteBtn,
 .read-status-button {
   width: 100px;
   height: 30px;
+}
+
+.deleteBtn {
+  background-color: rgb(245, 18, 18);
+  color: white;
+  border-color: rgb(245, 18, 18);
 }
 
 .book-read::before {

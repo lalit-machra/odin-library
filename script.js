@@ -71,7 +71,7 @@ function displayBooks() {
     td5 = document.createElement("td");
     deleteBtn = document.createElement("button");
     deleteBtn.innerText = "Delete";
-    deleteBtn.classList.add(`book${i + 1}`);
+    deleteBtn.classList.add(`book${i + 1}`, "deleteBtn");
     td5.appendChild(deleteBtn);
     tr.appendChild(td5);
 
@@ -99,10 +99,10 @@ function displayBooks() {
 }
 
 // Add new book using dialog box
-const addNewBook = document.querySelector(".addNewBook");
+const addNewBtn = document.querySelector(".addNewBtn");
 const newBookDialog = document.querySelector(".newBookDialog");
 
-addNewBook.addEventListener("click", () => {
+addNewBtn.addEventListener("click", () => {
   newBookDialog.showModal();
 });
 
