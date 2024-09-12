@@ -15,7 +15,7 @@ function addToLibrary(book) {
 }
 
 const book1 = new Book("author1", "title1", 234, "unread");
-const book2 = new Book("author2", "title2", 274, "read");
+const book2 = new Book("author2", "title2", 489, "read");
 addToLibrary(book1);
 addToLibrary(book2);
 
@@ -46,11 +46,9 @@ function displayBooks() {
     readStatusBtn = document.createElement("button");
     // We have different styling for button depending upon whether book read or not
     if (myLibrary[i].readStatus === "read") {
-      console.log("book read");
       readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-read");
     }
     else if (myLibrary[i].readStatus === "unread") {
-      console.log("book not read");
       readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-unread");
     }
     td4.appendChild(readStatusBtn);
@@ -90,12 +88,16 @@ function displayBooks() {
       
       // Remove the entire row from table
       let deleteTr = e.target.parentNode.parentNode;
-      console.log(deleteTr);
       deleteTr.remove();
     });
   
     tbody.appendChild(tr);
   }
+}
+
+// Delete all elements from table
+function emptyTable() {
+  tbody.innerHTML = "";
 }
 
 // Add new book using dialog box
@@ -113,7 +115,7 @@ closeDialog.addEventListener("click", () => {
 const author = document.querySelector("#author");
 const title = document.querySelector("#title");
 const numOfPages = document.querySelector("#numOfPages")
-const readingStatus = document.querySelector("readingStatus");
+const readingStatus = document.querySelector("#readingStatus");
 
 const formSubmitBtn = document.querySelector("form > button");
 
@@ -122,9 +124,11 @@ formSubmitBtn.addEventListener("click", () => {
   newBook["author"] = author.value;
   newBook["title"] = title.value;
   newBook["numOfPages"] = numOfPages.value;
-  newBook["readingStatus"] = readingStatus.value;
+  newBook["readStatus"] = readingStatus.value;
 
   addToLibrary(newBook);
+  emptyTable();
+  displayBooks();
 });
 
 displayBooks();
