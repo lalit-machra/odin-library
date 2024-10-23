@@ -1,8 +1,69 @@
-// Array to store all the objects
-// let myLibrary = [];
-
 class Library {
   static myLibrary = [];
+
+  static displayAllBooks() {
+    const tbody = document.querySelector("tbody");
+    let tr, td, deleteBtn, readStatusBtn, trToDelete;
+    const allFields = ["author", "title", "numOfPages", "readStatus"];
+
+    for (let i = 0; i < this.myLibrary.length; i++) {
+      tr = document.createElement("tr");
+
+      for (let j = 0; j <= allFields.length; j++) {
+        td = document.createElement("td");
+
+        // delete button
+        if (j === allFields.length) {
+          deleteBtn = document.createElement("button");
+          deleteBtn.innerText = "Delete";
+          deleteBtn.classList.add(`book${i + 1}`, "deleteBtn");
+          td.appendChild(deleteBtn);
+
+          // Add event listener for handling deletion of books
+          deleteBtn.addEventListener("click", () => {
+            Library.myLibrary[i].deleteFromLibrary();
+            trToDelete = document.querySelector("tbody > tr > td[class=`book${i + 1}`]").parentElement;
+            trToDelete.remove();
+          });
+        }
+
+        // read status toggle button
+        else if (j === (allFields.length - 1)) {
+          readStatusBtn = document.createElement("button");
+          // We have different styling for button depending upon whether book read or not
+          if (Library.myLibrary[i].readStatus === "read") {
+            readStatusBtn.classList.add("read-status-button", "book-read");
+          }
+          else if (Library.myLibrary[i].readStatus === "unread") {
+            readStatusBtn.classList.add("read-status-button", "book-unread");
+          }
+          td.appendChild(readStatusBtn);
+
+          // Add event listener for handling change of read status
+          readStatusBtn.addEventListener("click", () => {
+            if (e.target.classList.contains("book-read")) {
+              e.target.classList.remove("book-read");
+              e.target.classList.add("book-unread");
+              this.myLibrary[i]["readStatus"] = "unread";
+            }
+            else {
+              e.target.classList.remove("book-unread");
+              e.target.classList.add("book-read");
+              this.myLibrary[i]["readStatus"] = "read";
+            }
+          });
+        }
+
+        else {
+          td.innerText = Library.myLibrary[i][allFields[j]];
+        }
+
+        td.classList.add(`book${i + 1}`);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+  }
 }
 
 class Book extends Library{
@@ -31,8 +92,7 @@ book1.addToLibrary();
 book2.addToLibrary();
 book3.addToLibrary();
 
-const tbody = document.querySelector("tbody");
-let tr, td1, td2, td3, td4, td5, deleteBtn, readStatusBtn;
+
 
 function displayBooks() {
   for (let i = 0; i < Library.myLibrary.length; i++) {
@@ -55,13 +115,7 @@ function displayBooks() {
   
     td4 = document.createElement("td");
     readStatusBtn = document.createElement("button");
-    // We have different styling for button depending upon whether book read or not
-    if (Library.myLibrary[i].readStatus === "read") {
-      readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-read");
-    }
-    else if (Library.myLibrary[i].readStatus === "unread") {
-      readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-unread");
-    }
+ 
     td4.appendChild(readStatusBtn);
     tr.appendChild(td4);
 
@@ -142,4 +196,4 @@ formSubmitBtn.addEventListener("click", () => {
   displayBooks();
 });
 
-displayBooks();
+Library.displayAllBooks();
