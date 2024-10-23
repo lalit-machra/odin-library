@@ -1,54 +1,65 @@
-// Constructor to create new book objects
-function Book(author, title, numOfPages, readStatus) {
-  this.author = author;
-  this.title = title;
-  this.numOfPages = numOfPages;
-  this.readStatus = readStatus;
+// Array to store all the objects
+// let myLibrary = [];
+
+class Library {
+  static myLibrary = [];
 }
 
-// Array to store all the objects
-let myLibrary = [];
+class Book extends Library{
+  constructor(author, title, numOfPages, readStatus) {
+    super();
+    this.author = author;
+    this.title = title;
+    this.numOfPages = numOfPages;
+    this.readStatus = readStatus;
+  }
 
-// Add a book to the library
-function addToLibrary(book) {
-  myLibrary.push(book);
+  addToLibrary() {
+    Library.myLibrary.push(this);
+  }
+
+  deleteFromLibrary() {
+    let index = Library.myLibrary.indexOf(this);
+    Library.myLibrary.splice(index, 1);
+  }
 }
 
 const book1 = new Book("author1", "title1", 234, "unread");
-const book2 = new Book("author2", "title2", 489, "read");
-addToLibrary(book1);
-addToLibrary(book2);
+const book2 = new Book("author2", "title2", 489, "read"); 
+const book3 = new Book("author3", "title3", 900, "unread");
+book1.addToLibrary();
+book2.addToLibrary();
+book3.addToLibrary();
 
 const tbody = document.querySelector("tbody");
 let tr, td1, td2, td3, td4, td5, deleteBtn, readStatusBtn;
 
-
 function displayBooks() {
-  for (let i = 0; i < myLibrary.length; i++) {
+  for (let i = 0; i < Library.myLibrary.length; i++) {
     tr = document.createElement("tr");
   
     td1 = document.createElement("td");
-    td1.innerText = myLibrary[i].author;
+    td1.innerText = Library.myLibrary[i].author;
     td1.classList.add(`book${i + 1}`);
     tr.appendChild(td1);
   
     td2 = document.createElement("td");
-    td2.innerText = myLibrary[i].title;
+    td2.innerText = Library.myLibrary[i].title;
     td2.classList.add(`book${i + 1}`);
     tr.appendChild(td2);
   
     td3 = document.createElement("td");
-    td3.innerText = myLibrary[i].numOfPages;
+    td3.innerText = Library.myLibrary[i].numOfPages;
     td3.classList.add(`book${i + 1}`);
     tr.appendChild(td3);
   
     td4 = document.createElement("td");
     readStatusBtn = document.createElement("button");
     // We have different styling for button depending upon whether book read or not
-    if (myLibrary[i].readStatus === "read") {
+    if (Library.myLibrary[i].readStatus === "read") {
       readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-read");
     }
-    else if (myLibrary[i].readStatus === "unread") {
+    else if (Library.myLibrary[i].readStatus === "unread") {
       readStatusBtn.classList.add(`book${i + 1}`, "read-status-button", "book-unread");
     }
     td4.appendChild(readStatusBtn);
@@ -79,10 +90,10 @@ function displayBooks() {
       let bookClass = e.target.classList[0];
       let bookTitle = document.getElementsByClassName(`${bookClass}`)[1].innerText;
       
-      // Iterate myLibrary array to find the object using title name and delete it
-      for (let j = 0; j < myLibrary.length; j++) {
-        if (myLibrary[j]["title"] === bookTitle) {
-          myLibrary.splice(j, 1);
+      // Iterate Library.myLibrary array to find the object using title name and delete it
+      for (let j = 0; j < Library.myLibrary.length; j++) {
+        if (Library.myLibrary[j]["title"] === bookTitle) {
+          Library.myLibrary.splice(j, 1);
         }
       }
       
