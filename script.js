@@ -107,17 +107,22 @@ class Book extends Library{
     });
 
     const author = document.querySelector("#author");
+    author.value = '';
     const title = document.querySelector("#title");
+    title.value = '';
     const numOfPages = document.querySelector("#numOfPages")
+    numOfPages.value = '';
     const readingStatus = document.querySelector("#readingStatus");
+    readingStatus.value = '';
 
-    const formSubmitBtn = document.querySelector("form > button");
+    const form = document.querySelector(".newBookForm");
 
-    formSubmitBtn.addEventListener("click", () => {
+    form.addEventListener("submit", () => {
       let myNewBook = new Book(author.value, title.value, numOfPages.value, readingStatus.value);
       myNewBook.addToLibrary();
       Book.addingNewBook = true;
       Library.displayAllBooks();
+      console.log("form was submitted");
     });
   }
 }
